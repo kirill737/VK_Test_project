@@ -58,16 +58,6 @@ private extension ReviewsViewModel {
             
             state.offset += state.limit
             state.shouldLoad = state.offset < reviews.count
-            // TODO: кастыль
-            if !state.shouldLoad {  // Если загрузка завершена
-                let countItem = ReviewCellConfig(
-                    username: NSAttributedString(string: "Всего отзывов"),
-                    reviewText: "\(reviews.count) отзывов",
-                    created: "",
-                    onTapShowMore: nil
-                )
-                state.items.append(countItem)
-            }
         } catch {
             state.shouldLoad = true
         }
@@ -93,7 +83,8 @@ private extension ReviewsViewModel {
 private extension ReviewsViewModel {
 
     typealias ReviewItem = ReviewCellConfig
-
+    typealias ReviewsCountItem = ReviewsCountCellConfig
+    
     func makeReviewItem(_ review: Review) -> ReviewItem {
         let username = ("\(review.first_name) \(review.last_name)").attributed(font: .username)
         let rating = review.rating
@@ -108,7 +99,10 @@ private extension ReviewsViewModel {
         )
         return item
     }
-
+    
+    func makReviewsCountItem(_ reviewCount: Int) -> ReviewsCountItem {
+        return
+    }
 }
 
 // MARK: - UITableViewDataSource

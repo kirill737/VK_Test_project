@@ -74,7 +74,6 @@ final class ReviewCell: UITableViewCell {
     fileprivate let reviewTextLabel = UILabel()
     fileprivate let createdLabel = UILabel()
     fileprivate let showMoreButton = UIButton()
-    fileprivate let reviewsCountLabel = UILabel()
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -142,48 +141,6 @@ private extension ReviewCell {
 
 }
 
-// MARK: - Layout
-
-/// Класс, в котором происходит расчёт фреймов для сабвью ячейки отзыва.
-/// После расчётов возвращается актуальная высота ячейки.
-///
-private final class ReviewsCountCellLayout {
-
-    // MARK: - Фреймы
-    
-    private(set) var reviewsCountLabelFrame = CGRect.zero
-    
-    // MARK: - Отступы
-    
-    /// Отступы от краёв ячейки до её содержимого.
-    private let insets = UIEdgeInsets(top: 9.0, left: 12.0, bottom: 9.0, right: 12.0)
-    
-    func height(config: Config, maxWidth: CGFloat) -> CGFloat {
-        let width = maxWidth - insets.left - insets.right
-        
-        var maxY = insets.top
-        let minX = insets.left
-        
-        reviewsCountLabelFrame = CGRect(
-            origin: CGPoint(x: minX, y: maxY),
-            size: config..boundingRect(width: width).size
-        )
-
-        maxY = usernameLabelFrame.maxY + usernameToRatingSpacing
-        
-        ratingImageViewFrame = CGRect(
-            origin: CGPoint(x: minX, y: maxY),
-            size: config.ratingRender.getRatingImageSize()
-        )
-
-        maxY = ratingImageViewFrame.maxY + ratingToTextSpacing
-
-        return createdLabelFrame.maxY + insets.bottom
-    }
-
-}
-    
-}
 
 private final class ReviewCellLayout {
 
