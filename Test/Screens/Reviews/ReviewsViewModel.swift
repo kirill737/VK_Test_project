@@ -37,7 +37,6 @@ extension ReviewsViewModel {
         state.shouldLoad = false
         reviewsProvider.getReviews(offset: state.offset, completion: gotReviews)
     }
-
 }
 
 // MARK: - Private
@@ -58,6 +57,7 @@ private extension ReviewsViewModel {
             
             state.offset += state.limit
             state.shouldLoad = state.offset < reviews.count
+            if !state.shouldLoad { state.items.append(ReviewsCountItem(reviewsCount: reviews.count)) }
         } catch {
             state.shouldLoad = true
         }
@@ -97,11 +97,14 @@ private extension ReviewsViewModel {
             created: created,
             onTapShowMore: showMoreReview
         )
+        
         return item
     }
     
-    func makReviewsCountItem(_ reviewCount: Int) -> ReviewsCountItem {
-        return
+    func makReviewsCountItem(_ reviewsCount: Reviews) -> ReviewsCountItem {
+        let item = ReviewsCountItem(reviewsCount: reviewsCount.count)
+        
+        return item
     }
 }
 
