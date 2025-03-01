@@ -23,7 +23,6 @@ final class ReviewsViewController: UIViewController {
         super.viewDidLoad()
         setupViewModel()
         viewModel.getReviews()
-        print("View did load")
     }
 
 }

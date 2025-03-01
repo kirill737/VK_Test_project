@@ -35,7 +35,9 @@ extension ReviewsViewModel {
     func getReviews() {
         guard state.shouldLoad else { return } // если загружать не нужно, то
         state.shouldLoad = false
-        reviewsProvider.getReviews(offset: state.offset, completion: gotReviews)
+        reviewsProvider.getReviews(offset: state.offset, completion: { [weak self] result in
+            self?.gotReviews(result)
+        })
     }
 }
 
@@ -45,7 +47,6 @@ private extension ReviewsViewModel {
 
     /// Метод обработки получения отзывов.
     func gotReviews(_ result: ReviewsProvider.GetReviewsResult) {
-        print("gotReviews")
         do {
             print("Грузим часть отзывов")
             let data = try result.get()

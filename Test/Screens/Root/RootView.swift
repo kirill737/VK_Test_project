@@ -9,13 +9,11 @@ final class RootView: UIView {
         self.onTapReviews = onTapReviews
         super.init(frame: .zero)
         setupView()
-        
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 
 // MARK: - Private
@@ -28,8 +26,6 @@ private extension RootView {
     }
 
     func setupReviewsButton() {
-        
-        print("Грузим кнопку отзывов")
         reviewsButton.setTitle("Отзывы", for: .normal)
         
         reviewsButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
@@ -38,7 +34,7 @@ private extension RootView {
         reviewsButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         reviewsButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(reviewsButton)
-        print("Загрузили кнопку отзывов")
+        print("Загрузили кнопкe отзывов")
         NSLayoutConstraint.activate([
             reviewsButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             reviewsButton.centerYAnchor.constraint(equalTo: centerYAnchor),

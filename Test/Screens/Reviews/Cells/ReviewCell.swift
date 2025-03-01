@@ -94,7 +94,6 @@ final class ReviewCell: UITableViewCell {
         createdLabel.frame = layout.createdLabelFrame
         showMoreButton.frame = layout.showMoreButtonFrame
     }
-
 }
 
 // MARK: - Private
@@ -137,6 +136,7 @@ private extension ReviewCell {
         contentView.addSubview(showMoreButton)
         showMoreButton.contentVerticalAlignment = .fill
         showMoreButton.setAttributedTitle(Config.showMoreText, for: .normal)
+        showMoreButton.addAction(UIAction { [unowned self] _ in config?.onTapShowMore(config!.id) }, for: .touchUpInside)
     }
 
 }
@@ -189,10 +189,12 @@ private final class ReviewCellLayout {
 
     /// Возвращает высоту ячейку с данной конфигурацией `config` и ограничением по ширине `maxWidth`.
     func height(config: Config, maxWidth: CGFloat) -> CGFloat {
-        let width = maxWidth - insets.left - insets.right
-        
+
         var maxY = insets.top
         let minX = insets.left + ReviewCellLayout.avatarSize.width + avatarToUsernameSpacing
+        
+        let width = maxWidth - minX - insets.right
+        
         var showShowMoreButton = false
         
         avatarImageFrame = CGRect(
