@@ -25,8 +25,7 @@ extension ReviewsProvider {
     }
 
     func getReviews(offset: Int = 0, completion: @escaping (GetReviewsResult) -> Void) {
-        print("Извлекаем данные")
-        
+
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let url = self?.bundle.url(forResource: "getReviews.response", withExtension: "json") else {
                 DispatchQueue.main.async {

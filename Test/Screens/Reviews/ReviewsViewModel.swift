@@ -48,13 +48,9 @@ private extension ReviewsViewModel {
     /// Метод обработки получения отзывов.
     func gotReviews(_ result: ReviewsProvider.GetReviewsResult) {
         do {
-            print("Грузим часть отзывов")
             let data = try result.get()
             let reviews = try decoder.decode(Reviews.self, from: data)
             state.items += reviews.items.map(makeReviewItem)
-            
-            print("Reviews count: \(reviews.count)(\(state.items.count))")
-            print("Reviews items count: \(reviews.items.count)")
             
             state.offset += state.limit
             state.shouldLoad = state.offset < reviews.count

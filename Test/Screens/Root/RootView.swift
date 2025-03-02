@@ -34,7 +34,6 @@ private extension RootView {
         reviewsButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         reviewsButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(reviewsButton)
-        print("Загрузили кнопкe отзывов")
         NSLayoutConstraint.activate([
             reviewsButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             reviewsButton.centerYAnchor.constraint(equalTo: centerYAnchor),
